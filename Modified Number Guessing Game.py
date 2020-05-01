@@ -1,7 +1,7 @@
 import random
 
 level = 0
-count = 0
+
 print("Hello lets play a game")
 
 game = True
@@ -30,40 +30,38 @@ while level == 1:
             userNumber = int(input("please enter number guessed \n"))
             if userNumber > easy:
                 print("That was wrong, your answer is too high")
-            elif userNumber < easy:
+            if userNumber < easy:
                 print("That was wrong, Your answer is too low")
-            else:
+            if userNumber == easy:
                 print("You got it right")
                 break
             attempts -= 1
-            if attempts <= 0:
-                print("Game Over")
-                break
+        if attempts <= 0:
+            print("Game Over")
+        input("\nThanks for playing")
     except ValueError:
         print("please input a number")
-
 while level == 2:
     medium = random.randint(1, 20)
     try:
-        print("I've got a private number between 1 and 20, are you able to guess it?")
+        print("I've got a private number between 1 and 10, are you able to guess it?")
         attempts = 4
-
-        while True:
-            userNumber = int(input(f'You have {attempts} attempts.\nGuess the number between 1 and 20!.\n'))
+        for attempt in range(attempts, 0, -1):
+            print("You have {0} attempts left.".format(attempt))
+            userNumber = int(input("please enter number guessed \n"))
+            if userNumber > medium:
+                print("That was wrong, your answer is too high")
+            if userNumber < medium:
+                print("That was wrong, Your answer is too low")
             if userNumber == medium:
-                print(f'You got it right and still had{attempts}attempts left!.')
+                print("You got it right")
                 break
-            elif userNumber > medium:
-                print("You are wrong, your answer is Too high")
-            elif userNumber < medium:
-                print("You are wrong your answer is Too low")
-
             attempts -= 1
-            if attempts <= 0:
-                print("Game Over")
-                break
+        if attempts <= 0:
+            print("Game Over")
+        input("\nThanks for playing")
     except ValueError:
-        print("Please input a number")
+        print("please input a number")
 
 while level == 3:
     hard = random.randint(1, 50)
@@ -75,21 +73,14 @@ while level == 3:
             userNumber = int(input("please enter number guessed \n"))
             if userNumber > hard:
                 print("That was wrong, your answer is too high")
-            elif userNumber < hard:
+            if userNumber < hard:
                 print("That was wrong, your answer is too low")
-            else:
+            if userNumber == hard:
                 print("You got it right")
                 break
             attempts -= 1
-            if attempts <= 0:
-                print("Game Over")
+        if attempts <= 0:
+            print("Game Over")
+        input("\nThanks for playing")
     except ValueError:
         print("please input a number")
-
-again = str(input("Would you like to play again? Yes or No"))
-if again == "No":
-    game = False
-else:
-    game = True
-    count = count + 1
-quit()
